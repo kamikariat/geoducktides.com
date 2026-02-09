@@ -561,6 +561,7 @@ export default function TomalesBayTides() {
           <h1 style={{ fontSize:28, fontWeight:800, margin:0, background:"linear-gradient(135deg,#60a5fa,#34d399)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>
             Tomales Bay Entrance
           </h1>
+          <div style={{ fontSize:13, color:"#94a3b8", marginTop:6 }}>NOAA Station 9415469 · 2026 Tide Guide</div>
           <div style={{ display:"flex", justifyContent:"center", gap:6, marginTop:12, flexWrap:"wrap" }}>
             {Object.entries(MONTH_CONFIG).map(([key, c]) => (
               <button key={key} onClick={() => switchMonth(key)} style={{
@@ -572,6 +573,11 @@ export default function TomalesBayTides() {
               }}>{c.short}</button>
             ))}
           </div>
+        </div>
+
+        {/* How to Read */}
+        <div style={{ background:"rgba(96,165,250,0.06)", border:"1px solid rgba(96,165,250,0.2)", borderRadius:10, padding:"12px 16px", marginBottom:20, fontSize:13, color:"#94a3b8", lineHeight:1.6 }}>
+          <strong style={{ color:"#93c5fd" }}>How to read this chart:</strong> Look for days where the low tide drops below 0 ft during daylight. Below −1 ft is ideal for tidepooling — the lower the better. Check the time against sunrise and sunset: a −1.5 ft tide at 5 AM before sunrise isn't useful. The calendar highlights negative tide days in red, and each day's detail card shows exact tide times alongside sunrise/sunset.
         </div>
 
         {/* Stats */}
