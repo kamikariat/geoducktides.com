@@ -600,7 +600,7 @@ export default function TomalesBayTides() {
 
         {/* How to Read */}
         <div style={{ background:"rgba(96,165,250,0.06)", border:"1px solid rgba(96,165,250,0.2)", borderRadius:10, padding:"12px 16px", marginBottom:20, fontSize:13, color:"#94a3b8", lineHeight:1.6 }}>
-          <strong style={{ color:"#93c5fd" }}>How to read this chart:</strong> Look for days where the low tide drops below 0 ft during daylight. Below −1 ft is ideal for tidepooling — the lower the better. Check the time against sunrise and sunset: a −1.5 ft tide at 5 AM before sunrise isn't useful. The calendar highlights negative tide days in red, and each day's detail card shows exact tide times alongside sunrise/sunset.
+          <strong style={{ color:"#93c5fd" }}>How to read this chart:</strong> Look for days where the low tide drops below 0 ft during daylight. Below −1 ft is ideal for tidepooling — the lower the better. Check the time against sunrise and sunset: a −1.5 ft tide at 5 AM before sunrise isn&apos;t useful. The calendar highlights negative tide days in red, and each day&apos;s detail card shows exact tide times alongside sunrise/sunset.
         </div>
 
         {/* Stats */}
