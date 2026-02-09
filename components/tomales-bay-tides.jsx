@@ -552,6 +552,29 @@ export default function TomalesBayTides() {
 
   const switchMonth = (m) => { setMonth(m); setSelectedDay(null); setView("month"); };
 
+  const downloadCSV = () => {
+    const header = "Month,Day,Dow,AM High Time,AM High Ft,PM High Time,PM High Ft,AM Low Time,AM Low Ft,PM Low Time,PM Low Ft,Sunrise,Sunset,Daylight,Moon Phase";
+    const rows = [];
+    for (const [key, mc] of Object.entries(MONTH_CONFIG)) {
+      for (const d of mc.data) {
+        const fT = (arr, pm) => {
+          if (!arr) return ",";
+          const h = pm && arr[0] < 12 ? arr[0]+12 : arr[0];
+          return `${fmtTime(h, arr[1])},${arr[2]}`;
+        };
+        rows.push(`${mc.short},${d.day},${d.dow},${fT(d.amHigh,false)},${fT(d.pmHigh,true)},${fT(d.amLow,false)},${fT(d.pmLow,true)},${d.rise},${d.set},${d.dayLen},${d.moon}`);
+      }
+    }
+    const csv = header + "\n" + rows.join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "tomales-bay-tides-2026.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div style={{ background:"#0f172a", minHeight:"100vh", padding:"24px 20px", fontFamily:'-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif', color:"#e2e8f0" }}>
       <div style={{ maxWidth:900, margin:"0 auto" }}>
@@ -891,8 +914,15 @@ export default function TomalesBayTides() {
           </div>
         </div>
 
-        <div style={{ textAlign:"center", marginTop:16, fontSize:11, color:"#475569" }}>
-          Data: USHarbors.com · Tomales Bay entrance, CA
+        <div style={{ display:"flex", justifyContent:"center", alignItems:"center", gap:12, marginTop:16 }}>
+          <span style={{ fontSize:11, color:"#475569" }}>Data: USHarbors.com · Tomales Bay entrance, CA</span>
+          <button onClick={downloadCSV} style={{
+            padding:"5px 12px", borderRadius:6, border:"1px solid #334155", background:"#1e293b",
+            color:"#94a3b8", cursor:"pointer", fontSize:11, fontWeight:600, transition:"all 0.2s",
+            display:"flex", alignItems:"center", gap:4,
+          }}>
+            <span style={{ fontSize:13 }}>&#8595;</span> Download CSV
+          </button>
         </div>
       </div>
     </div>
